@@ -1,6 +1,7 @@
 package com.vsaldivarm.dogsdex.doglist
 
 import com.vsaldivarm.dogsdex.Dog
+import com.vsaldivarm.dogsdex.api.DogsApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -9,7 +10,7 @@ class DogRepository {
     suspend fun downloadDogs(): List<Dog>{
         //IO descargar cosas de internet o acceder a DB (hilo secundario)
 return withContext(Dispatchers.IO){
-    getFakeDogs()
+    DogsApi.retrofitService.getAllDogs()
 }
     }
 

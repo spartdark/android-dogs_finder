@@ -28,8 +28,6 @@ class DogListActivity : AppCompatActivity() {
         dogListViewModel.dogList.observe(this){
             adapter.submitList(it)
         }
-
-
     }
 
 
