@@ -34,7 +34,7 @@ class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DiffCallback) {
     inner class DogViewHolder(val bindingDogViewHolder: DogListItemBinding) :
         RecyclerView.ViewHolder(bindingDogViewHolder.root) {
         fun bind(dog: Dog) {
-            bindingDogViewHolder.textViewDogName.text = dog.name
+            bindingDogViewHolder.textViewDogName.text = dog.name_es
         }
     }
 }

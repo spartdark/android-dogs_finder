@@ -1,16 +1,23 @@
 package com.vsaldivarm.dogsdex
 
-data class Dog (val id: Long,
-           val index:Int,
-           val name:String,
-           val type:String,
-           val heightFemale: Double,
-           val heightMale: Double,
-           val imageUrl:String,
-val lifeExpectancy: String,
-           val temperament: String,
-           val weightFemale: Double,
-           val weightMale: Double
-           ) {
+
+data class Dog (
+    val id: Long,
+    val dog_type:String,
+    val height_female:String,
+    val height_male:String,
+    val image_url: String,
+    val index: Int,
+    val life_expectancy:String,
+    val name_en: String,
+    val name_es: String,
+    val temperament: String,
+    val temperament_en: String,
+    val weight_female: String,
+    val weight_male: String,
+    val created_at: String,
+    val updated_at: String,
+    val ml_id: String)
+            {
 
 }

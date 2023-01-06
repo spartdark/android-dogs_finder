@@ -1,20 +1,27 @@
 package com.vsaldivarm.dogsdex.doglist
 
+import android.util.Log
 import com.vsaldivarm.dogsdex.Dog
 import com.vsaldivarm.dogsdex.api.DogsApi
+import com.vsaldivarm.dogsdex.api.dto.DogDTOMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class DogRepository {
+    private var TAG =   this::class.java.simpleName
 
-    suspend fun downloadDogs(): List<Dog>{
+    suspend fun downloadDogs(): List<Dog> {
         //IO descargar cosas de internet o acceder a DB (hilo secundario)
-return withContext(Dispatchers.IO){
-    DogsApi.retrofitService.getAllDogs()
-}
+        return withContext(Dispatchers.IO) {
+            //DogsApi.retrofitService.getAllDogs()
+            val dogListApiResponse = DogsApi.retrofitService.getAllDogs()
+            Log.i(TAG,"My Response: ${dogListApiResponse.toString()}")
+            val dogDTOMapper = DogDTOMapper()
+            dogDTOMapper.fromDTOListToDogDomainList(dogListApiResponse.data.dogs)
+        }
     }
 
-    private fun getFakeDogs(): MutableList<Dog> {
+/*    private fun getFakeDogs(): MutableList<Dog> {
         val dogList = mutableListOf<Dog>()
         dogList.add(
             Dog(
@@ -59,5 +66,5 @@ return withContext(Dispatchers.IO){
             )
         )
         return dogList
-    }
+    }*/
 }
