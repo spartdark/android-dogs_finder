@@ -22,17 +22,19 @@ class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
         val binding = DogListItemBinding.inflate(LayoutInflater.from(parent.context))
-
+// retornamos el viewHolder (crear el viewHolder)
         return DogViewHolder(binding)
     }
 
     override fun onBindViewHolder(dogViewHolder: DogViewHolder, position: Int) {
         val dog = getItem(position)
+        //para cada perro va a crear un viewholder
         dogViewHolder.bind(dog)
     }
 
     inner class DogViewHolder(val bindingDogViewHolder: DogListItemBinding) :
         RecyclerView.ViewHolder(bindingDogViewHolder.root) {
+        //pinta la vista
         fun bind(dog: Dog) {
             bindingDogViewHolder.textViewDogName.text = dog.name_es
         }

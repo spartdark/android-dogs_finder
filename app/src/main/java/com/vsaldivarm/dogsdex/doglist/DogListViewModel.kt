@@ -15,10 +15,12 @@ class DogListViewModel : ViewModel(){
         get() = _dogList
 
     init{
+        //descarge los perros en cuanto inicie la app
         downloadDogs()
     }
 
     private fun downloadDogs() {
+        //coroutines para descargar datos
         viewModelScope.launch {
             _dogList.value = dogRepository.downloadDogs()
         }

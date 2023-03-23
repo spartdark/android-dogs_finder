@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 class DogRepository {
     private var TAG =   this::class.java.simpleName
 
+    //el metodo es de tipo suspend por que esta dentro de una corutine
     suspend fun downloadDogs(): List<Dog> {
         //IO descargar cosas de internet o acceder a DB (hilo secundario)
         return withContext(Dispatchers.IO) {
