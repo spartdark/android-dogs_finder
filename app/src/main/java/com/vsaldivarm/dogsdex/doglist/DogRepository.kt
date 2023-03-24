@@ -16,7 +16,7 @@ class DogRepository {
         return withContext(Dispatchers.IO) {
             //DogsApi.retrofitService.getAllDogs()
             val dogListApiResponse = DogsApi.retrofitService.getAllDogs()
-            Log.i(TAG,"My Response: ${dogListApiResponse.toString()}")
+            Log.i(TAG,"My Response: $dogListApiResponse")
             val dogDTOMapper = DogDTOMapper()
             dogDTOMapper.fromDTOListToDogDomainList(dogListApiResponse.data.dogs)
         }
