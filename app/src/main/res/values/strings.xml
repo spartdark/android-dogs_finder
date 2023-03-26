@@ -5,4 +5,11 @@
     <string name="height">Height</string>
     <string name="group">Group</string>
     <string name="male">Male</string>
+    <string name="desc_dog_image">Dog Image</string>
+    <string name="desc_love_dog">love dog</string>
+    <string name="desc_enter_how_much_cookies_you_want">Enter How Much Cookies You Want</string>
+    <!-- dog detail activity-->
+    <string name="error_dog_not_found">Dog not found</string>
+    <string name="dog_index_format">#%d</string>
+    <string name="dog_life_expectancy_format">%s years</string>
 </resources>

@@ -1,6 +1,9 @@
 package com.vsaldivarm.dogsdex
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Dog (
     val id: Long,
     val dog_type:String,
@@ -17,7 +20,4 @@ data class Dog (
     val weight_male: String,
     val created_at: String,
     val updated_at: String,
-    val ml_id: String)
-            {
-
-}
+    val ml_id: String): Parcelable
