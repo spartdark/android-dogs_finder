@@ -46,25 +46,17 @@ class DogListActivity : AppCompatActivity() {
         //observar el estatus de la peticion
         dogListViewModel.networkStatus.observe(this) { status ->
             when (status) {
-                ApiResponseStatus.LOADING -> {// show progressbar
+                is ApiResponseStatus.Error -> {//Mostrar error con un toast
+                    Toast.makeText(this, status.message, Toast.LENGTH_LONG).show()
+                    //dismiss progressbar
+                    progressbar.visibility = View.GONE
+                }
+                is ApiResponseStatus.Loading -> {// show progressbar
                     progressbar.visibility = View.VISIBLE
                 }
-                ApiResponseStatus.ERROR -> {//Mostrar error con un toast
-                    Toast.makeText(this, "Error to get information", Toast.LENGTH_LONG).show()
-                    //dismiss progressbar
+                is ApiResponseStatus.Sucess -> {//dismiss progressbar
                     progressbar.visibility = View.GONE
                 }
-                ApiResponseStatus.SUCCESS -> {
-                    //Dismiss progressbar
-                    progressbar.visibility = View.GONE
-                }
-                else -> {
-                    //dismiss progressbar
-                    progressbar.visibility = View.GONE
-                    Toast.makeText(this, "Try Again", Toast.LENGTH_LONG).show()
-                }
-
-
             }
         }
     }

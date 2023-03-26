@@ -28,15 +28,20 @@ class DogListViewModel : ViewModel() {
     private fun downloadDogs() {
         //coroutines para descargar datos
         viewModelScope.launch {
-            _networkStatus.value = ApiResponseStatus.LOADING
-            try {
-                _dogList.value = dogRepository.downloadDogs()
-                _networkStatus.value = ApiResponseStatus.SUCCESS
-            } catch (e: Exception) {
-                _networkStatus.value = ApiResponseStatus.ERROR
-            }
+             //seteo el network status en loading
+            _networkStatus.value = ApiResponseStatus.Loading()
+            //proceso el estatus
+            handleResponseStatus(dogRepository.downloadDogs())
         }
     }
+
+    private fun handleResponseStatus(dogsStatus: ApiResponseStatus) {
+        if (dogsStatus is ApiResponseStatus.Sucess) {
+            _dogList.value = dogsStatus.dogList
+        }
+        _networkStatus.value = dogsStatus
+    }
+
 
 
 }
