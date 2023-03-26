@@ -10,6 +10,7 @@ import com.vsaldivarm.dogsdex.databinding.ActivityDogListBinding
 
 class DogListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDogListBinding
+    //instanciar viewmodel
     private val dogListViewModel: DogListViewModel  by viewModels()
 
 
@@ -25,6 +26,7 @@ class DogListActivity : AppCompatActivity() {
         val adapter = DogAdapter()
         recycler.adapter = adapter
 
+        //observar desde esta activity
         dogListViewModel.dogList.observe(this){
             adapter.submitList(it)
         }

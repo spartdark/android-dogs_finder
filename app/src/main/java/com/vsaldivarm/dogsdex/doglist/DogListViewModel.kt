@@ -10,7 +10,9 @@ import kotlinx.coroutines.launch
 class DogListViewModel : ViewModel(){
 
     private  val dogRepository = DogRepository()
+    //privado ( no puede sre editado desde la vista)
     private val _dogList = MutableLiveData<List<Dog>>()
+    //publico
     val dogList : LiveData<List<Dog>>
         get() = _dogList
 
