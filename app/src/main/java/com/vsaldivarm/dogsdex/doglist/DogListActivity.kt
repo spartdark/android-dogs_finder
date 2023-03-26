@@ -3,10 +3,13 @@ package com.vsaldivarm.dogsdex.doglist
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsaldivarm.dogsdex.Dog
 import com.vsaldivarm.dogsdex.R
+import com.vsaldivarm.dogsdex.api.ApiResponseStatus
 import com.vsaldivarm.dogsdex.databinding.ActivityDogListBinding
 import com.vsaldivarm.dogsdex.dogdetail.DogDetailActivity
 import com.vsaldivarm.dogsdex.dogdetail.DogDetailActivity.Companion.DOG_KEY
@@ -21,6 +24,7 @@ class DogListActivity : AppCompatActivity() {
         binding = ActivityDogListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val progressbar = binding.progressBarDogList
 
         val recycler = binding.dogsRecycler
         recycler.layoutManager = LinearLayoutManager(this)
@@ -38,6 +42,30 @@ class DogListActivity : AppCompatActivity() {
 
         dogListViewModel.dogList.observe(this) {
             adapter.submitList(it)
+        }
+        //observar el estatus de la peticion
+        dogListViewModel.networkStatus.observe(this) { status ->
+            when (status) {
+                ApiResponseStatus.LOADING -> {// show progressbar
+                    progressbar.visibility = View.VISIBLE
+                }
+                ApiResponseStatus.ERROR -> {//Mostrar error con un toast
+                    Toast.makeText(this, "Error to get information", Toast.LENGTH_LONG).show()
+                    //dismiss progressbar
+                    progressbar.visibility = View.GONE
+                }
+                ApiResponseStatus.SUCCESS -> {
+                    //Dismiss progressbar
+                    progressbar.visibility = View.GONE
+                }
+                else -> {
+                    //dismiss progressbar
+                    progressbar.visibility = View.GONE
+                    Toast.makeText(this, "Try Again", Toast.LENGTH_LONG).show()
+                }
+
+
+            }
         }
     }
 
