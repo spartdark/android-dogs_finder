@@ -16,8 +16,8 @@ class DogListViewModel : ViewModel() {
     val dogList: LiveData<List<Dog>>
         get() = _dogList
 
-    private val _networkStatus = MutableLiveData<ApiResponseStatus>()
-    val networkStatus: LiveData<ApiResponseStatus>
+    private val _networkStatus = MutableLiveData<ApiResponseStatus<List<Dog>>>()
+    val networkStatus: LiveData<ApiResponseStatus<List<Dog>>>
         get() = _networkStatus
 
     init {
@@ -35,9 +35,10 @@ class DogListViewModel : ViewModel() {
         }
     }
 
-    private fun handleResponseStatus(dogsStatus: ApiResponseStatus) {
+    private fun handleResponseStatus(dogsStatus: ApiResponseStatus<List<Dog>>) {
         if (dogsStatus is ApiResponseStatus.Success) {
-            _dogList.value = dogsStatus.dogList
+            _dogList.value = dogsStatus.data!!
+
         }
         _networkStatus.value = dogsStatus
     }

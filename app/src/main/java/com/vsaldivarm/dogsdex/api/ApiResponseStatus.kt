@@ -2,8 +2,9 @@ package com.vsaldivarm.dogsdex.api
 
 import com.vsaldivarm.dogsdex.Dog
 
-sealed class ApiResponseStatus() {
-    class Success(val dogList: List<Dog>):ApiResponseStatus()
-    class  Loading():ApiResponseStatus()
-    class Error (val message: String):ApiResponseStatus()
+//Va a funcionar para cualquier tipo de dato <T>
+sealed class ApiResponseStatus<T> {
+    class Success<T>(val data: T): ApiResponseStatus<T>()
+    class  Loading<T>:ApiResponseStatus<T>()
+    class Error <T>(val message: String):ApiResponseStatus<T>()
 }
