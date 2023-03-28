@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vsaldivarm.dogsdex.api.ApiResponseStatus
 import com.vsaldivarm.dogsdex.databinding.ActivityDogListBinding
 import com.vsaldivarm.dogsdex.dogdetail.DogDetailActivity
 import com.vsaldivarm.dogsdex.dogdetail.DogDetailActivity.Companion.DOG_KEY
-
+private const val GRID_SPAN =2
 class DogListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDogListBinding
     private val dogListViewModel: DogListViewModel by viewModels()
@@ -25,7 +26,7 @@ class DogListActivity : AppCompatActivity() {
         val progressbar = binding.progressBarDogList
 
         val recycler = binding.dogsRecycler
-        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.layoutManager = GridLayoutManager(this,GRID_SPAN)
 
         val adapter = DogAdapter()
         //agregar onclick listener al adapter

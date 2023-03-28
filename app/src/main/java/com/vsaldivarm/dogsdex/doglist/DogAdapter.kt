@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.ListAdapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.vsaldivarm.dogsdex.Dog
 import com.vsaldivarm.dogsdex.databinding.DogListItemBinding
 
@@ -41,8 +42,8 @@ class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DiffCallback) {
         RecyclerView.ViewHolder(bindingDogViewHolder.root) {
         //pinta la vista
         fun bind(dog: Dog) {
-            bindingDogViewHolder.textViewDogName.text = dog.name_es
-            bindingDogViewHolder.textViewDogName.setOnClickListener{
+            bindingDogViewHolder.dogImage.load(dog.image_url)
+            bindingDogViewHolder.dogListItemLayout.setOnClickListener{
                 //Si no es null lo invocamos (invoke)
                 onItemClickListeneer?.invoke(dog)
             }
