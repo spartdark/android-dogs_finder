@@ -1,7 +1,6 @@
 package com.vsaldivarm.dogsdex.doglist
 
 import android.util.Log
-import com.vsaldivarm.dogsdex.Dog
 import com.vsaldivarm.dogsdex.api.ApiResponseStatus
 import com.vsaldivarm.dogsdex.api.DogsApi
 import com.vsaldivarm.dogsdex.api.dto.DogDTOMapper
@@ -20,7 +19,7 @@ class DogRepository {
                 val dogListApiResponse = DogsApi.retrofitService.getAllDogs()
                 Log.i(TAG, "My Response: $dogListApiResponse")
                 val dogDTOMapper = DogDTOMapper()
-                ApiResponseStatus.Sucess(dogDTOMapper.fromDTOListToDogDomainList(dogListApiResponse.data.dogs))
+                ApiResponseStatus.Success(dogDTOMapper.fromDTOListToDogDomainList(dogListApiResponse.data.dogs))
 
             } catch (e: UnknownHostException) {
                 ApiResponseStatus.Error(e.localizedMessage)

@@ -7,8 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.vsaldivarm.dogsdex.Dog
-import com.vsaldivarm.dogsdex.R
 import com.vsaldivarm.dogsdex.api.ApiResponseStatus
 import com.vsaldivarm.dogsdex.databinding.ActivityDogListBinding
 import com.vsaldivarm.dogsdex.dogdetail.DogDetailActivity
@@ -54,7 +52,7 @@ class DogListActivity : AppCompatActivity() {
                 is ApiResponseStatus.Loading -> {// show progressbar
                     progressbar.visibility = View.VISIBLE
                 }
-                is ApiResponseStatus.Sucess -> {//dismiss progressbar
+                is ApiResponseStatus.Success -> {//dismiss progressbar
                     progressbar.visibility = View.GONE
                 }
             }

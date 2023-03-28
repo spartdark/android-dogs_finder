@@ -36,7 +36,7 @@ class DogListViewModel : ViewModel() {
     }
 
     private fun handleResponseStatus(dogsStatus: ApiResponseStatus) {
-        if (dogsStatus is ApiResponseStatus.Sucess) {
+        if (dogsStatus is ApiResponseStatus.Success) {
             _dogList.value = dogsStatus.dogList
         }
         _networkStatus.value = dogsStatus
